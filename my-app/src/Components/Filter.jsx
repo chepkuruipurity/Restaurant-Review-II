@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Rating from "./starRating";
-import RestaurantList from './RestaurantList';
+import RestaurantList from "./RestaurantList";
 
 export default class Filter extends Component {
   constructor(props) {
@@ -64,25 +64,24 @@ export default class Filter extends Component {
             <option value="2">2 stars</option>
             <option value="3">3 stars</option>
             <option value="4">4 stars</option>
-            <option value="5" selected >
+            <option value="5" selected>
               5 stars
             </option>
           </select>
         </div>
 
         <div id="restaurants">
-          
-          { this.props.restaurants && this.filterRestaurants(this.props.restaurants)
-           
-
+          {this.props.restaurants &&
+            this.filterRestaurants(this.props.restaurants)
             .map((resta, i) => {
-               
               return (
-                <div
-                key={i}
-                 
-                >
-                 <RestaurantList onIconClick={this.props.onClick} resta={resta} key={resta.place_id} i={i}/>
+                <div key={i}>
+                  <RestaurantList
+                    onIconClick={this.props.onClick}
+                    resta={resta}
+                    key={resta.place_id}
+                    i={i}
+                  />
                 </div>
               );
             })}

@@ -1,31 +1,20 @@
-import React,{Component} from 'react';
-import StarRatings from 'react-star-ratings';
+import React, { Component } from "react";
+import StarRatings from "react-star-ratings";
 
-
- export  const Rating= ({rating})=>{
-
-
-  return(
-   
-  <StarRatings
-  rating={rating}
-  starRatedColor="gold"
-  starDimension="25px"
-  starSpacing="2px"
-  numberOfStars={5}
-  name='rating'
-/>
-
+export const Rating = ({ rating }) => {
+  return (
+    <StarRatings
+      rating={rating}
+      starRatedColor="gold"
+      starDimension="25px"
+      starSpacing="2px"
+      numberOfStars={5}
+      name="rating"
+    />
   );
-
- 
-}
+};
 
 export default Rating;
-
-
-
-
 
 /* export  function starRating(place) {
     let rating = [];

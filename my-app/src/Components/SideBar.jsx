@@ -1,9 +1,8 @@
 import React from "react";
 import { Component } from "react";
-import './restaurantList.css';
-import RestaurantList from './RestaurantList';
-import Filter from './Filter';
-
+import "./restaurantList.css";
+import RestaurantList from "./RestaurantList";
+import Filter from "./Filter";
 
 export default class SideBar extends Component {
   constructor(props) {
@@ -13,10 +12,10 @@ export default class SideBar extends Component {
   render() {
     return (
       <div className="restaurantList">
-        <Filter/>
-       
+        <Filter />
+
         <div id="restaurants">
-          <RestaurantList restaurants={this.props.restaurants}/>
+          <RestaurantList restaurants={this.props.restaurants} />
         </div>
       </div>
     );

@@ -8,7 +8,7 @@ import "./restaurantList.css";
 import Filter from "./Filter";
 
 const style = {
-       width: " 60%",
+  width: " 60%",
   height: "30rem",
   backgroundColor: "gainsboro",
 };
@@ -43,11 +43,7 @@ class MapContainer extends Component {
     return (
       <div id="infoWindow" className="infoWindow">
         <div>
-          <img
-            className="infoImg"
-            id="infoImg"
-            src={props.photos}
-          />
+          <img className="infoImg" id="infoImg" src={props.photos} />
         </div>
         <div className="details">
           <h3 className="name">{props.name}</h3>
@@ -69,24 +65,21 @@ class MapContainer extends Component {
       </div>
     );
   };
-  onMarkerMounted=()=>{}
+  onMarkerMounted = () => {};
   displayMarkers = () => {
     return this.state.places.map((resta, i) => {
       const coords = resta.geometry.location;
-      const photos=  typeof resta.photos !== "undefined"
-? resta.photos[0].getUrl({ maxWidth: 600, maxHeight: 400 })
-: "/images/kosewe.jpg";
-console.log(coords);
+      const photos =
+        typeof resta.photos !== "undefined"
+          ? resta.photos[0].getUrl({ maxWidth: 600, maxHeight: 400 })
+          : "/images/kosewe.jpg";
+      console.log(coords);
       return (
-     
         <Marker
-        
-        ref={this.onMarkerMounted}
-
+          ref={this.onMarkerMounted}
           key={resta.place_id}
           id={resta.place_id}
           position={{ lat: coords.lat, lng: coords.lng }}
-        
           name={resta.name}
           rating={resta.rating}
           photos={photos}
@@ -116,43 +109,41 @@ console.log(coords);
     });
   };
 
- 
   render() {
-    console.log(this.state.places,this.props.restaurants);
+    console.log(this.state.places, this.props.restaurants);
     return (
       <div className="mapArea">
-      <div id="map">
-       
-          
-            <CurrentLocation  centerAroundCurrentLocation
+        <div id="map">
+          <CurrentLocation
+            centerAroundCurrentLocation
             google={this.props.google}
             ref={this.mapRef}
             style={style}
-            onReady={this.onMapReady} >
-              <Marker name={"Current Location"} icon={userMarker} />
-              {this.displayMarkers(this.state.places)}
+            onReady={this.onMapReady}
+          >
+            <Marker name={"Current Location"} icon={userMarker} />
+            {this.displayMarkers(this.state.places)}
 
-              <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.onClose}
-              >
-                {this.displayInfoWindow(this.state.selectedPlace)}
-              </InfoWindow>
-            </CurrentLocation>
-            </div>
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onClose}
+            >
+              {this.displayInfoWindow(this.state.selectedPlace)}
+            </InfoWindow>
+          </CurrentLocation>
+        </div>
 
-<div id="restaurantList">
-
-  <Filter  restaurants={this.state.places} onClick={this.onMarkerClick}/>
-   
- 
-</div>
-</div>
-       
+        <div id="restaurantList">
+          <Filter
+            restaurants={this.state.places}
+            onClick={this.onMarkerClick}
+          />
+        </div>
+      </div>
     );
   }
 }
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDVx8OUfG3OK3ixZtcR52hqrYjOusTWF4g",
+  apiKey: REACT_APP_GOOGLE_API_KEY,
 })(MapContainer);
